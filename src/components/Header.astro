@@ -1,0 +1,66 @@
+---
+interface Props {
+  currentPage?: 'artworks' | 'archives' | 'about';
+  variant?: 'default' | 'about';
+}
+
+const { currentPage, variant = 'default' } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<header class:list={['site-header', { 'site-header--about': variant === 'about' }]}>
+  <a href={`${base}`} class="site-title">Madhura Dharmadhikari</a>
+  <nav class="site-nav">
+    <a href={`${base}artworks`} class:list={[{ active: currentPage === 'artworks' }]}>Artworks</a>
+    <a href={`${base}archives`} class:list={[{ active: currentPage === 'archives' }]}>Archives</a>
+    <a href={`${base}about`} class:list={[{ active: currentPage === 'about' }]}>About</a>
+  </nav>
+</header>
+
+<style>
+  .site-header {
+    text-align: center;
+    padding-top: 100px;
+  }
+
+  .site-header--about {
+    text-align: right;
+    padding-right: 177px;
+  }
+
+  .site-title {
+    font-family: var(--font-display);
+    font-size: 60px;
+    font-weight: 400;
+    color: var(--color-eerie-black);
+    display: block;
+  }
+
+  .site-nav {
+    margin-top: 8px;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+  }
+
+  .site-header--about .site-nav {
+    justify-content: flex-end;
+  }
+
+  .site-nav a {
+    font-family: var(--font-body);
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--color-eerie-black);
+    transition: color 0.2s ease;
+  }
+
+  .site-nav a:hover {
+    color: var(--color-turkey-red);
+  }
+
+  .site-nav a.active {
+    font-weight: 800;
+    color: var(--color-turkey-red);
+  }
+</style>

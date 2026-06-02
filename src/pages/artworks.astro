@@ -1,0 +1,77 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import ArtworkBlock from '../components/ArtworkBlock.astro';
+import { artworks } from '../data/artworks';
+
+const base = import.meta.env.BASE_URL;
+
+// Zigzag distribution: col1, col3, col2 repeating
+const col1Items = artworks.filter((_, i) => i % 3 === 0);
+const col3Items = artworks.filter((_, i) => i % 3 === 1);
+const col2Items = artworks.filter((_, i) => i % 3 === 2);
+---
+
+<BaseLayout title="Artworks — Madhura Dharmadhikari" currentPage="artworks">
+  <section class="artworks-grid">
+    <div class="artworks-col artworks-col--1">
+      {col1Items.map((item) => (
+        <div class="artworks-item">
+          <ArtworkBlock
+            number={item.number}
+            title={item.title}
+            image={`${base}${item.image.replace(/^\//, '')}`}
+            href={`${base}series/${item.id}`}
+          />
+        </div>
+      ))}
+    </div>
+    <div class="artworks-col artworks-col--2">
+      {col2Items.map((item) => (
+        <div class="artworks-item">
+          <ArtworkBlock
+            number={item.number}
+            title={item.title}
+            image={`${base}${item.image.replace(/^\//, '')}`}
+            href={`${base}series/${item.id}`}
+          />
+        </div>
+      ))}
+    </div>
+    <div class="artworks-col artworks-col--3">
+      {col3Items.map((item) => (
+        <div class="artworks-item">
+          <ArtworkBlock
+            number={item.number}
+            title={item.title}
+            image={`${base}${item.image.replace(/^\//, '')}`}
+            href={`${base}series/${item.id}`}
+          />
+        </div>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .artworks-grid {
+    display: flex;
+    gap: 264px;
+    padding: 0 177px;
+    margin-top: 100px;
+  }
+
+  .artworks-col {
+    display: flex;
+    flex-direction: column;
+    gap: 180px;
+  }
+
+  .artworks-col--1,
+  .artworks-col--3 {
+    padding-top: 0;
+  }
+
+  .artworks-col--2 {
+    padding-top: 225px;
+  }
+</style>

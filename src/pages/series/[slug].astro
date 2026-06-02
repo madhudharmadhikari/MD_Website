@@ -1,0 +1,241 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TextBox from '../../components/TextBox.astro';
+import ImageCarousel from '../../components/ImageCarousel.astro';
+import ContinueReading from '../../components/ContinueReading.astro';
+import { getAllArtworks, getArtworkById, getRelatedArtworks } from '../../data/artworks';
+
+export function getStaticPaths() {
+  const allArtworks = getAllArtworks();
+  return allArtworks.map((artwork) => ({
+    params: { slug: artwork.id },
+  }));
+}
+
+const base = import.meta.env.BASE_URL;
+const prefixPath = (p: string) => `${base}${p.replace(/^\//, '')}`;
+
+const { slug } = Astro.params;
+const artwork = getArtworkById(slug!)!;
+const related = getRelatedArtworks(slug!, 2);
+
+const galleryImages = artwork.galleryImages.map(prefixPath);
+
+const continueItems = related.map((r) => ({
+  title: `Title of the series here`,
+  image: prefixPath(r.image),
+  href: `${base}series/${r.id}`,
+}));
+---
+
+<BaseLayout title={`${artwork.title} — Madhura Dharmadhikari`} currentPage="artworks">
+  {artwork.layout === 'carousel' && (
+    <section class="series-carousel">
+      <div class="series-carousel-wrapper">
+        <ImageCarousel images={galleryImages} width={1086} height={804} />
+      </div>
+      <div class="series-carousel-text">
+        <TextBox title={artwork.title} date={artwork.date} body={artwork.description} />
+      </div>
+    </section>
+  )}
+
+  {artwork.layout === 'equigrid' && (
+    <section class="series-equigrid">
+      <div class="series-equigrid-text">
+        <TextBox title={artwork.title} date={artwork.date} body={artwork.description} />
+      </div>
+      <div class="series-equigrid-grid">
+        {galleryImages.map((src) => (
+          <div class="equigrid-image">
+            <img src={src} alt="" loading="lazy" />
+          </div>
+        ))}
+      </div>
+    </section>
+  )}
+
+  {artwork.layout === 'alternate' && (
+    <section class="series-alternate">
+      <div class="series-alternate-text">
+        <TextBox
+          title={artwork.title}
+          date={artwork.date}
+          body={artwork.description}
+          bodyWidth={710}
+          offsetX={365}
+        />
+      </div>
+      <div class="series-alternate-grid">
+        {galleryImages.map((src, i) => {
+          const groupIndex = Math.floor(i / 3);
+          const posInGroup = i % 3;
+
+          if (posInGroup < 2) {
+            return (
+              <div class:list={['alternate-image', posInGroup === 0 ? 'alternate-image--left' : 'alternate-image--right']}>
+                <img src={src} alt="" loading="lazy" />
+              </div>
+            );
+          }
+          return (
+            <div class="alternate-image alternate-image--center">
+              <img src={src} alt="" loading="lazy" />
+            </div>
+          );
+        })}
+      </div>
+    </section>
+  )}
+
+  {artwork.layout === 'wheel' && (
+    <section class="series-wheel">
+      <div class="series-wheel-inner">
+        <div class="series-wheel-text">
+          <TextBox
+            title={artwork.title}
+            date={artwork.date}
+            body={artwork.description}
+            bodyWidth={485}
+          />
+        </div>
+        <div class="series-wheel-images">
+          {galleryImages.map((src) => (
+            <div class="wheel-image">
+              <img src={src} alt="" loading="lazy" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <ContinueReading items={continueItems} />
+</BaseLayout>
+
+<style>
+  /* ===================== CAROUSEL LAYOUT ===================== */
+  .series-carousel {
+    margin-top: 100px;
+  }
+
+  .series-carousel-wrapper {
+    padding: 0 177px;
+  }
+
+  .series-carousel-text {
+    margin-top: 100px;
+  }
+
+  /* ===================== EQUIGRID LAYOUT ===================== */
+  .series-equigrid {
+    margin-top: 100px;
+  }
+
+  .series-equigrid-text {
+    margin-bottom: 100px;
+  }
+
+  .series-equigrid-grid {
+    padding: 0 177px;
+    display: grid;
+    grid-template-columns: 530px 530px;
+    gap: 25px;
+    justify-content: center;
+  }
+
+  .equigrid-image {
+    width: 530px;
+    height: 647px;
+    overflow: hidden;
+  }
+
+  .equigrid-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* ===================== ALTERNATE LAYOUT ===================== */
+  .series-alternate {
+    margin-top: 100px;
+  }
+
+  .series-alternate-text {
+    margin-bottom: 100px;
+  }
+
+  .series-alternate-grid {
+    padding: 0 177px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 150px 50px;
+    align-items: center;
+  }
+
+  .alternate-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .alternate-image--left {
+    width: 518px;
+    height: 633px;
+    overflow: hidden;
+  }
+
+  .alternate-image--right {
+    width: 518px;
+    height: 518px;
+    overflow: hidden;
+    align-self: center;
+  }
+
+  .alternate-image--center {
+    width: 652px;
+    height: 753px;
+    overflow: hidden;
+    margin: 0 auto;
+  }
+
+  /* ===================== WHEEL LAYOUT ===================== */
+  .series-wheel {
+    margin-top: 100px;
+  }
+
+  .series-wheel-inner {
+    padding: 0 177px;
+    display: flex;
+    gap: 50px;
+    align-items: flex-start;
+  }
+
+  .series-wheel-text {
+    flex: 0 0 485px;
+  }
+
+  .series-wheel-text :global(.text-box) {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  .series-wheel-images {
+    flex: 0 0 586px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    overflow: hidden;
+  }
+
+  .wheel-image {
+    width: 586px;
+    overflow: hidden;
+  }
+
+  .wheel-image img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+</style>

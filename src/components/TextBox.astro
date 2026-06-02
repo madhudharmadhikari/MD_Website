@@ -1,0 +1,75 @@
+---
+interface Props {
+  title: string;
+  date: string;
+  body: string;
+  bodyWidth?: number;
+  offsetX?: number;
+}
+
+const { title, date, body, bodyWidth = 1064, offsetX = 177 } = Astro.props;
+---
+
+<div class="text-box" style={`padding-left: ${offsetX}px;`}>
+  <div class="text-box-header">
+    <span class="text-box-line"></span>
+    <div class="text-box-heading">
+      <h1 class="text-box-title">{title}</h1>
+      <p class="text-box-date">{date}</p>
+    </div>
+  </div>
+  <div class="text-box-body" style={`max-width: ${bodyWidth}px;`}>
+    <p>{body}</p>
+  </div>
+</div>
+
+<style>
+  .text-box {
+    padding-right: 177px;
+  }
+
+  .text-box-header {
+    display: flex;
+    align-items: flex-start;
+  }
+
+  .text-box-line {
+    display: block;
+    width: 105px;
+    height: 3px;
+    background-color: var(--color-turkey-red);
+    margin-top: 20px;
+    flex-shrink: 0;
+  }
+
+  .text-box-heading {
+    margin-left: 21px;
+  }
+
+  .text-box-title {
+    font-family: var(--font-body);
+    font-size: 40px;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--color-eerie-black);
+    line-height: 1.2;
+  }
+
+  .text-box-date {
+    margin-top: 5px;
+    font-family: var(--font-body);
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--color-eerie-black);
+  }
+
+  .text-box-body {
+    margin-top: 30px;
+    font-family: var(--font-body);
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--color-grey);
+    line-height: 1.6;
+    text-align: left;
+  }
+</style>

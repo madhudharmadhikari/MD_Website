@@ -1,0 +1,105 @@
+---
+interface Props {
+  images: string[];
+  width?: number;
+  height?: number;
+}
+
+const { images, width = 1086, height = 804 } = Astro.props;
+---
+
+<div class="carousel" style={`width: ${width}px; height: ${height}px;`} data-carousel>
+  <button class="carousel-arrow carousel-arrow--left" data-carousel-prev aria-label="Previous image">
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m15 18-6-6 6-6"/>
+    </svg>
+  </button>
+
+  <div class="carousel-track">
+    {images.map((src, i) => (
+      <div class:list={['carousel-slide', { 'carousel-slide--active': i === 0 }]} data-slide={i}>
+        <img src={src} alt={`Slide ${i + 1}`} loading={i === 0 ? 'eager' : 'lazy'} />
+      </div>
+    ))}
+  </div>
+
+  <button class="carousel-arrow carousel-arrow--right" data-carousel-next aria-label="Next image">
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m9 18 6-6-6-6"/>
+    </svg>
+  </button>
+</div>
+
+<style>
+  .carousel {
+    position: relative;
+    margin: 0 auto;
+  }
+
+  .carousel-track {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .carousel-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  .carousel-slide--active {
+    opacity: 1;
+  }
+
+  .carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .carousel-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--color-line);
+    cursor: pointer;
+    padding: 8px;
+    z-index: 2;
+    transition: color 0.2s ease;
+  }
+
+  .carousel-arrow:hover {
+    color: var(--color-grey);
+  }
+
+  .carousel-arrow--left {
+    left: -75px;
+  }
+
+  .carousel-arrow--right {
+    right: -75px;
+  }
+</style>
+
+<script>
+  document.querySelectorAll('[data-carousel]').forEach((carousel) => {
+    const slides = carousel.querySelectorAll('[data-slide]');
+    const prevBtn = carousel.querySelector('[data-carousel-prev]');
+    const nextBtn = carousel.querySelector('[data-carousel-next]');
+    let current = 0;
+
+    function goTo(index: number) {
+      slides[current].classList.remove('carousel-slide--active');
+      current = (index + slides.length) % slides.length;
+      slides[current].classList.add('carousel-slide--active');
+    }
+
+    prevBtn?.addEventListener('click', () => goTo(current - 1));
+    nextBtn?.addEventListener('click', () => goTo(current + 1));
+  });
+</script>

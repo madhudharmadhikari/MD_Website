@@ -1,0 +1,77 @@
+---
+interface Props {
+  items: {
+    title: string;
+    image: string;
+    href: string;
+  }[];
+}
+
+const { items } = Astro.props;
+---
+
+<section class="continue-reading">
+  <h2 class="continue-reading-title">Continue reading</h2>
+  <div class="continue-reading-grid">
+    {items.map((item) => (
+      <a href={item.href} class="continue-reading-item">
+        <div class="continue-reading-image">
+          <img src={item.image} alt={item.title} loading="lazy" />
+        </div>
+        <span class="continue-reading-label">{item.title}</span>
+      </a>
+    ))}
+  </div>
+</section>
+
+<style>
+  .continue-reading {
+    padding: 0 177px;
+    margin-top: 100px;
+  }
+
+  .continue-reading-title {
+    font-family: var(--font-body);
+    font-size: 30px;
+    font-weight: 400;
+    color: var(--color-eerie-black);
+  }
+
+  .continue-reading-grid {
+    margin-top: 50px;
+    display: flex;
+    gap: 77px;
+  }
+
+  .continue-reading-item {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+  }
+
+  .continue-reading-image {
+    width: 368px;
+    height: 450px;
+    overflow: hidden;
+  }
+
+  .continue-reading-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .continue-reading-item:hover .continue-reading-image img {
+    transform: scale(1.05);
+  }
+
+  .continue-reading-label {
+    display: block;
+    margin-top: 21px;
+    font-family: var(--font-body);
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--color-eerie-black);
+  }
+</style>

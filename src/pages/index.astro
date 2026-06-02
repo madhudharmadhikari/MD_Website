@@ -1,0 +1,92 @@
+---
+import '../styles/global.css';
+const base = import.meta.env.BASE_URL;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Madhura Dharmadhikari</title>
+  </head>
+  <body>
+    <div class="landing">
+      <div class="landing-bg">
+        <img
+          src={`${base}images/placeholder/placeholder-1.jpg`}
+          alt=""
+          class="landing-poster"
+        />
+        <!--
+          Replace the img above with a video element when ready:
+          <video autoplay muted loop playsinline>
+            <source src="${base}videos/landing.mp4" type="video/mp4" />
+          </video>
+        -->
+      </div>
+      <a href={`${base}artworks`} class="landing-title">Madhura Dharmadhikari</a>
+    </div>
+
+    <script is:inline>
+      document.addEventListener('contextmenu', function (e) {
+        if (e.target.tagName === 'IMG' || e.target.tagName === 'VIDEO') {
+          e.preventDefault();
+        }
+      });
+    </script>
+  </body>
+</html>
+
+<style is:global>
+  @import url('https://fonts.googleapis.com/css2?family=La+Belle+Aurore&display=swap');
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+</style>
+
+<style>
+  .landing {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #000;
+  }
+
+  .landing-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+  }
+
+  .landing-bg img,
+  .landing-bg video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.7;
+  }
+
+  .landing-title {
+    position: relative;
+    z-index: 1;
+    font-family: 'La Belle Aurore', cursive;
+    font-size: 50px;
+    font-weight: 400;
+    color: #ffffff;
+    text-decoration: none;
+    transition: opacity 0.3s ease;
+    user-select: none;
+  }
+
+  .landing-title:hover {
+    opacity: 0.8;
+  }
+</style>

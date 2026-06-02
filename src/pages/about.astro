@@ -1,0 +1,104 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="About — Madhura Dharmadhikari" currentPage="about" headerVariant="about">
+  <section class="about-content">
+    <div class="about-line"></div>
+    <div class="about-image-wrapper">
+      <img
+        src={`${base}images/placeholder/placeholder-2.jpg`}
+        alt="Madhura Dharmadhikari"
+        class="about-image"
+      />
+    </div>
+    <div class="about-text">
+      <p>
+        Work explores Churchkill's relationship to female intimacy through the use
+        of multiple art forms, shadows, and color.Churchkill's 'Mona' is part of
+        Huxley Parlour's 'The Female Lens: 9 Contemporary Female Photographers' at
+        the Photo London 2018 art fair. The body of work explores Churchkill's
+        relationship to female intimacy through the use of multiple art forms,
+        shadows, and color.
+      </p>
+      <p>
+        The body of work explores Churchkill's relationship to female intimacy
+        through the use of multiple art forms, shadows, and color.Churchkill's
+        'Mona' is part of Huxley Parlour's 'The Female Lens: 9 Contemporary Female
+        Photographers' at the Photo London 2018 art fair. The body of work explores
+        Churchkill's relationship to female intimacy through the use of multiple art
+        forms, shadows, and color. The body of work explores Churchkill's
+        relationship to female intimacy through the use of multiple art forms,
+        shadows, and color.
+      </p>
+      <p>
+        My work combines Digital and Analog photography along with Mixed Media and
+        stories to talk about what it is to live life with chronic conditions. My
+        series have images as the base and depending on the project, it combines with
+        materials and techniques that have held a unique place in my heart like
+        painting, drawing and fibre art. My work is heavily inspired by my decade
+        long experience of living with IgA vasculitis. The stories and incidents and
+        the time I have spent by myself in recovery phases inspires me. Realising the
+        lack of awareness and feeling the need to receive the right kind of support
+        is what drives me.
+      </p>
+      <p>
+        If talking about my experiences can benefit even one other person who
+        experiences the same things as me, I would say that my suffering was not in
+        vain.
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .about-content {
+    position: relative;
+    padding: 0 177px;
+    margin-top: 100px;
+  }
+
+  .about-line {
+    position: absolute;
+    left: 355px;
+    top: 0;
+    width: 2px;
+    height: 1100px;
+    background-color: var(--color-line);
+    border-radius: 1px;
+  }
+
+  .about-image-wrapper {
+    margin-left: 199px;
+    margin-top: 33px;
+    width: 687px;
+    height: 1037px;
+    overflow: hidden;
+  }
+
+  .about-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .about-text {
+    margin-left: 200px;
+    margin-top: 30px;
+    max-width: 687px;
+    font-family: var(--font-body);
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--color-eerie-black);
+    line-height: 1.6;
+  }
+
+  .about-text p {
+    margin-bottom: 20px;
+  }
+
+  .about-text p:last-child {
+    margin-bottom: 0;
+  }
+</style>
