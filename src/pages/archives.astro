@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ArtworkBlock from '../components/ArtworkBlock.astro';
 import { archives } from '../data/artworks';
 
-const base = import.meta.env.BASE_URL;
+import { base } from '../lib/paths';
 
 // 2-column alternating: col1, col2
 const col1Items = archives.filter((_, i) => i % 2 === 0);

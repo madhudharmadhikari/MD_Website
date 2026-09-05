@@ -5,7 +5,7 @@ interface Props {
 }
 
 const { currentPage, variant = 'default' } = Astro.props;
-const base = import.meta.env.BASE_URL;
+import { base } from '../lib/paths';
 ---
 
 <header class:list={['site-header', { 'site-header--about': variant === 'about' }]}>
@@ -32,7 +32,7 @@ const base = import.meta.env.BASE_URL;
     font-family: var(--font-display);
     font-size: 60px;
     font-weight: 400;
-    color: var(--color-eerie-black);
+    color: var(--color-turkey-red);
     display: block;
   }
 
@@ -51,12 +51,12 @@ const base = import.meta.env.BASE_URL;
     font-family: var(--font-body);
     font-size: 20px;
     font-weight: 400;
-    color: var(--color-eerie-black);
-    transition: color 0.2s ease;
+    color: var(--color-turkey-red);
+    transition: opacity 0.2s ease;
   }
 
   .site-nav a:hover {
-    color: var(--color-turkey-red);
+    opacity: 0.7;
   }
 
   .site-nav a.active {

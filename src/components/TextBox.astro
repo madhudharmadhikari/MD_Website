@@ -30,15 +30,14 @@ const { title, date, body, bodyWidth = 1064, offsetX = 177 } = Astro.props;
 
   .text-box-header {
     display: flex;
-    align-items: flex-start;
+    align-items: stretch;
   }
 
+  /* Vertical rule, spanning the full height of the title + date block */
   .text-box-line {
     display: block;
-    width: 105px;
-    height: 3px;
+    width: 3px;
     background-color: var(--color-turkey-red);
-    margin-top: 20px;
     flex-shrink: 0;
   }
 

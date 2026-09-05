@@ -12,7 +12,7 @@ export function getStaticPaths() {
   }));
 }
 
-const base = import.meta.env.BASE_URL;
+import { base } from '../../lib/paths';
 const prefixPath = (p: string) => `${base}${p.replace(/^\//, '')}`;
 
 const { slug } = Astro.params;
@@ -28,7 +28,7 @@ const continueItems = related.map((r) => ({
 }));
 ---
 
-<BaseLayout title={`${artwork.title} — Madhura Dharmadhikari`} currentPage="artworks">
+<BaseLayout title={`${artwork.title} — Madhura Dharmadhikari`} currentPage={artwork.category}>
   {artwork.layout === 'carousel' && (
     <section class="series-carousel">
       <div class="series-carousel-wrapper">
@@ -213,6 +213,9 @@ const continueItems = related.map((r) => ({
 
   .series-wheel-text {
     flex: 0 0 485px;
+    position: sticky;
+    top: 100px;
+    align-self: flex-start;
   }
 
   .series-wheel-text :global(.text-box) {

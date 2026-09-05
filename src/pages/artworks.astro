@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 import ArtworkBlock from '../components/ArtworkBlock.astro';
 import { artworks } from '../data/artworks';
 
-const base = import.meta.env.BASE_URL;
+import { base } from '../lib/paths';
 
 // Zigzag distribution: col1, col3, col2 repeating
 const col1Items = artworks.filter((_, i) => i % 3 === 0);

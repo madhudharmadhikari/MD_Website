@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-const base = import.meta.env.BASE_URL;
+import { base } from '../lib/paths';
 ---
 
 <!doctype html>
@@ -21,7 +21,7 @@ const base = import.meta.env.BASE_URL;
         <!--
           Replace the img above with a video element when ready:
           <video autoplay muted loop playsinline>
-            <source src="${base}videos/landing.mp4" type="video/mp4" />
+            <source src={`${base}videos/landing.mp4`} type="video/mp4" />
           </video>
         -->
       </div>
@@ -51,36 +51,59 @@ const base = import.meta.env.BASE_URL;
 <style>
   .landing {
     position: relative;
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100dvh;
     overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #000;
+    /*
+      Sampled from the photograph's own backdrop, which measures a flat
+      #E4E4E4 right across its top and left edges. Because the page ground
+      matches the image ground exactly, the letterbox seam disappears and the
+      frame reads as one wide picture instead of a portrait on a mat.
+    */
+    background-color: #e4e4e4;
   }
 
   .landing-bg {
     position: absolute;
     inset: 0;
     z-index: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
+  /*
+    contain, not cover. placeholder-1.jpg is a 641x800 portrait crop; covering a
+    16:9 window scales it ~3x and discards over half its height, which is what
+    made it look blown up. Contained, it renders at roughly 1.15x on a 918px-tall
+    viewport, i.e. near its native resolution. Swap back to cover once the
+    original landscape file arrives.
+  */
   .landing-bg img,
   .landing-bg video {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    opacity: 0.7;
+    object-fit: contain;
   }
 
+  /*
+    Sat at 43.75% rather than dead centre: measured across the photograph, that
+    band is the darkest the full width of the name crosses (brightest eighth
+    ~152 vs ~229 at the midline, where the name would fall on the white shirt).
+  */
   .landing-title {
-    position: relative;
+    position: absolute;
+    top: 43.75%;
+    transform: translateY(-50%);
     z-index: 1;
     font-family: 'La Belle Aurore', cursive;
     font-size: 50px;
     font-weight: 400;
     color: #ffffff;
+    text-shadow: 0 1px 14px rgba(0, 0, 0, 0.35);
     text-decoration: none;
     transition: opacity 0.3s ease;
     user-select: none;
