@@ -16,7 +16,7 @@ import { base } from '../lib/paths';
     <div class="landing">
       <div class="landing-bg">
         <img
-          src={`${base}images/placeholder/placeholder-1.jpg`}
+          src={`${base}images/landing.jpg`}
           alt=""
           class="landing-poster"
         />
@@ -59,13 +59,8 @@ import { base } from '../lib/paths';
     display: flex;
     align-items: center;
     justify-content: center;
-    /*
-      Sampled from the photograph's own backdrop, which measures a flat
-      #E4E4E4 right across its top and left edges. Because the page ground
-      matches the image ground exactly, the letterbox seam disappears and the
-      frame reads as one wide picture instead of a portrait on a mat.
-    */
-    background-color: #e4e4e4;
+    /* Fallback shown only while the image loads; sampled from its darkest tone. */
+    background-color: #0a0a0a;
   }
 
   .landing-bg {
@@ -77,28 +72,16 @@ import { base } from '../lib/paths';
     justify-content: center;
   }
 
-  /*
-    contain, not cover. placeholder-1.jpg is a 641x800 portrait crop; covering a
-    16:9 window scales it ~3x and discards over half its height, which is what
-    made it look blown up. Contained, it renders at roughly 1.15x on a 918px-tall
-    viewport, i.e. near its native resolution. Swap back to cover once the
-    original landscape file arrives.
-  */
   .landing-bg img,
   .landing-bg video {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
   }
 
-  /*
-    Sat at 43.75% rather than dead centre: measured across the photograph, that
-    band is the darkest the full width of the name crosses (brightest eighth
-    ~152 vs ~229 at the midline, where the name would fall on the white shirt).
-  */
   .landing-title {
     position: absolute;
-    top: 43.75%;
+    top: 50%;
     transform: translateY(-50%);
     z-index: 1;
     font-family: 'La Belle Aurore', cursive;
