@@ -3,6 +3,7 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
 import TextBox from '../../components/TextBox.astro';
 import ImageCarousel from '../../components/ImageCarousel.astro';
 import ContinueReading from '../../components/ContinueReading.astro';
+import Lightbox from '../../components/Lightbox.astro';
 import { getAllArtworks, getArtworkById, getRelatedArtworks } from '../../data/artworks';
 
 export function getStaticPaths() {
@@ -46,8 +47,8 @@ const continueItems = related.map((r) => ({
         <TextBox title={artwork.title} date={artwork.date} body={artwork.description} />
       </div>
       <div class="series-equigrid-grid">
-        {galleryImages.map((src) => (
-          <div class="equigrid-image">
+        {galleryImages.map((src, i) => (
+          <div class="equigrid-image" data-lightbox-trigger data-lightbox-index={i} role="button" tabindex="0">
             <img src={src} alt="" loading="lazy" />
           </div>
         ))}
@@ -73,13 +74,19 @@ const continueItems = related.map((r) => ({
 
           if (posInGroup < 2) {
             return (
-              <div class:list={['alternate-image', posInGroup === 0 ? 'alternate-image--left' : 'alternate-image--right']}>
+              <div
+                class:list={['alternate-image', posInGroup === 0 ? 'alternate-image--left' : 'alternate-image--right']}
+                data-lightbox-trigger
+                data-lightbox-index={i}
+                role="button"
+                tabindex="0"
+              >
                 <img src={src} alt="" loading="lazy" />
               </div>
             );
           }
           return (
-            <div class="alternate-image alternate-image--center">
+            <div class="alternate-image alternate-image--center" data-lightbox-trigger data-lightbox-index={i} role="button" tabindex="0">
               <img src={src} alt="" loading="lazy" />
             </div>
           );
@@ -100,8 +107,8 @@ const continueItems = related.map((r) => ({
           />
         </div>
         <div class="series-wheel-images">
-          {galleryImages.map((src) => (
-            <div class="wheel-image">
+          {galleryImages.map((src, i) => (
+            <div class="wheel-image" data-lightbox-trigger data-lightbox-index={i} role="button" tabindex="0">
               <img src={src} alt="" loading="lazy" />
             </div>
           ))}
@@ -111,6 +118,7 @@ const continueItems = related.map((r) => ({
   )}
 
   <ContinueReading items={continueItems} />
+  <Lightbox images={galleryImages} />
 </BaseLayout>
 
 <style>
@@ -240,5 +248,10 @@ const continueItems = related.map((r) => ({
     width: 100%;
     height: auto;
     object-fit: cover;
+  }
+
+  /* ===================== LIGHTBOX TRIGGERS ===================== */
+  [data-lightbox-trigger] {
+    cursor: pointer;
   }
 </style>

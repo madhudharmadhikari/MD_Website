@@ -1,0 +1,182 @@
+---
+interface Props {
+  images: string[];
+}
+
+const { images } = Astro.props;
+---
+
+<div class="lightbox" data-lightbox hidden>
+  <button type="button" class="lightbox-close" data-lightbox-close aria-label="Close">
+    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18 6 6 18M6 6l12 12" />
+    </svg>
+  </button>
+
+  <button type="button" class="lightbox-arrow lightbox-arrow--left" data-lightbox-prev aria-label="Previous image">
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m15 18-6-6 6-6" />
+    </svg>
+  </button>
+
+  <div class="lightbox-stage" data-lightbox-stage>
+    <img class="lightbox-image" data-lightbox-image src="" alt="" />
+  </div>
+
+  <button type="button" class="lightbox-arrow lightbox-arrow--right" data-lightbox-next aria-label="Next image">
+    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m9 18 6-6-6-6" />
+    </svg>
+  </button>
+</div>
+
+<script type="application/json" data-lightbox-images set:html={JSON.stringify(images)} />
+
+<style>
+  .lightbox {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(10, 10, 10, 0.92);
+  }
+
+  .lightbox[hidden] {
+    display: none;
+  }
+
+  .lightbox-stage {
+    width: 90vw;
+    height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .lightbox-image {
+    max-width: 100%;
+    max-height: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    -webkit-user-drag: none;
+    user-select: none;
+  }
+
+  .lightbox-close {
+    position: absolute;
+    top: 32px;
+    right: 40px;
+    background: none;
+    border: none;
+    color: var(--color-white, #fff);
+    cursor: pointer;
+    padding: 8px;
+    z-index: 2;
+    opacity: 0.85;
+    transition: opacity 0.2s ease;
+  }
+
+  .lightbox-close:hover {
+    opacity: 1;
+  }
+
+  .lightbox-arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--color-white, #fff);
+    cursor: pointer;
+    padding: 8px;
+    z-index: 2;
+    opacity: 0.85;
+    transition: opacity 0.2s ease;
+  }
+
+  .lightbox-arrow:hover {
+    opacity: 1;
+  }
+
+  .lightbox-arrow--left {
+    left: 24px;
+  }
+
+  .lightbox-arrow--right {
+    right: 24px;
+  }
+</style>
+
+<script>
+  function initLightbox() {
+    const root = document.querySelector<HTMLElement>('[data-lightbox]');
+    if (!root) return;
+
+    const imagesEl = document.querySelector<HTMLScriptElement>('[data-lightbox-images]');
+    const images: string[] = imagesEl ? JSON.parse(imagesEl.textContent || '[]') : [];
+
+    const imgEl = root.querySelector<HTMLImageElement>('[data-lightbox-image]');
+    const prevBtn = root.querySelector<HTMLButtonElement>('[data-lightbox-prev]');
+    const nextBtn = root.querySelector<HTMLButtonElement>('[data-lightbox-next]');
+    const closeBtn = root.querySelector<HTMLButtonElement>('[data-lightbox-close]');
+    const stage = root.querySelector<HTMLElement>('[data-lightbox-stage]');
+
+    let current = 0;
+
+    function show(index: number) {
+      current = (index + images.length) % images.length;
+      if (imgEl) imgEl.src = images[current];
+    }
+
+    function open(index: number) {
+      show(index);
+      root!.hidden = false;
+      document.body.style.overflow = 'hidden';
+    }
+
+    function close() {
+      root!.hidden = true;
+      document.body.style.overflow = '';
+    }
+
+    function isOpen() {
+      return !root!.hidden;
+    }
+
+    prevBtn?.addEventListener('click', () => show(current - 1));
+    nextBtn?.addEventListener('click', () => show(current + 1));
+    closeBtn?.addEventListener('click', close);
+
+    root.addEventListener('click', (e) => {
+      if (e.target === root || e.target === stage) close();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (!isOpen()) return;
+      if (e.key === 'Escape') close();
+      if (e.key === 'ArrowLeft') show(current - 1);
+      if (e.key === 'ArrowRight') show(current + 1);
+    });
+
+    document.addEventListener('click', (e) => {
+      const trigger = (e.target as HTMLElement).closest<HTMLElement>('[data-lightbox-trigger]');
+      if (!trigger) return;
+      const index = Number(trigger.dataset.lightboxIndex || 0);
+      open(index);
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Enter' && e.key !== ' ') return;
+      const trigger = (e.target as HTMLElement)?.closest?.<HTMLElement>('[data-lightbox-trigger]');
+      if (!trigger) return;
+      e.preventDefault();
+      const index = Number(trigger.dataset.lightboxIndex || 0);
+      open(index);
+    });
+  }
+
+  initLightbox();
+</script>

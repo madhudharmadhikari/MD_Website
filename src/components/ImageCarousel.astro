@@ -17,7 +17,14 @@ const { images, width = 1086, height = 804 } = Astro.props;
 
   <div class="carousel-track">
     {images.map((src, i) => (
-      <div class:list={['carousel-slide', { 'carousel-slide--active': i === 0 }]} data-slide={i}>
+      <div
+        class:list={['carousel-slide', { 'carousel-slide--active': i === 0 }]}
+        data-slide={i}
+        data-lightbox-trigger
+        data-lightbox-index={i}
+        role="button"
+        tabindex="0"
+      >
         <img src={src} alt={`Slide ${i + 1}`} loading={i === 0 ? 'eager' : 'lazy'} />
       </div>
     ))}
@@ -47,11 +54,14 @@ const { images, width = 1086, height = 804 } = Astro.props;
     position: absolute;
     inset: 0;
     opacity: 0;
+    pointer-events: none;
     transition: opacity 0.5s ease;
   }
 
   .carousel-slide--active {
     opacity: 1;
+    pointer-events: auto;
+    cursor: pointer;
   }
 
   .carousel-slide img {
