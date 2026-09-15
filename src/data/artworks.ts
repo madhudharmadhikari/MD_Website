@@ -162,8 +162,25 @@ export const artworks: Artwork[] = [
 
 export const archives: Artwork[] = [
   {
-    id: 'textures-in-circles',
+    id: 'tints',
     number: '01',
+    title: 'Tints',
+    image: '/images/archives/tints/turmeric.jpeg',
+    layout: 'carousel',
+    date: 'September 2017',
+    description: `The idea behind this shoot was to show the natural elements used to make natural dyes. This image is composed as such that it gives the idea that the colour is going from its source to the threads, which are and indication for the cloth.`,
+    category: 'archives',
+    galleryImages: [
+      '/images/archives/tints/turmeric.jpeg',
+      '/images/archives/tints/beet.jpeg',
+      '/images/archives/tints/cabbage.jpeg',
+      '/images/archives/tints/mint-leaf.jpeg',
+      '/images/archives/tints/pomegranate.jpeg',
+    ],
+  },
+  {
+    id: 'textures-in-circles',
+    number: '02',
     title: 'Texture in Circles',
     image: '/images/archives/textures-in-circles/cloth-2.jpg',
     layout: 'equigrid',
@@ -187,7 +204,7 @@ export const archives: Artwork[] = [
   },
   {
     id: 'nostalgia',
-    number: '02',
+    number: '03',
     title: 'Nostalgia',
     image: '/images/archives/nostalgia/transistor.jpg',
     layout: 'carousel',
