@@ -162,8 +162,32 @@ export const artworks: Artwork[] = [
 
 export const archives: Artwork[] = [
   {
-    id: 'nostalgia',
+    id: 'textures-in-circles',
     number: '01',
+    title: 'Texture in Circles',
+    image: '/images/archives/textures-in-circles/cloth-2.jpg',
+    layout: 'equigrid',
+    date: 'August 2017',
+    description: '',
+    category: 'archives',
+    galleryImages: [
+      '/images/archives/textures-in-circles/water-texture-1.jpg',
+      '/images/archives/textures-in-circles/water-texture-2.jpg',
+      '/images/archives/textures-in-circles/water-texture-3.jpg',
+      '/images/archives/textures-in-circles/water-texture-4.jpg',
+      '/images/archives/textures-in-circles/water-texture-5.jpg',
+      '/images/archives/textures-in-circles/water-texture-6.jpg',
+      '/images/archives/textures-in-circles/paper-texture-01.jpg',
+      '/images/archives/textures-in-circles/paper-texture-02.jpg',
+      '/images/archives/textures-in-circles/paper-texture-03.jpg',
+      '/images/archives/textures-in-circles/paper-texture-04.jpg',
+      '/images/archives/textures-in-circles/cloth-1.jpg',
+      '/images/archives/textures-in-circles/cloth-2.jpg',
+    ],
+  },
+  {
+    id: 'nostalgia',
+    number: '02',
     title: 'Nostalgia',
     image: '/images/archives/nostalgia/transistor.jpg',
     layout: 'carousel',
