@@ -8,6 +8,7 @@ export interface Artwork {
   description: string;
   category: 'artworks' | 'archives';
   galleryImages: string[];
+  imageFit?: 'cover' | 'contain';
 }
 
 const loremBody = `Churchkill's 'Mona' is part of Huxley Parlour's 'The Female Lens: 9 Contemporary Female Photographers' at the Photo London 2018 art fair. The body of work explores Churchkill's relationship to female intimacy through the use of multiple art forms, shadows, and color.Churchkill's 'Mona' is part of Huxley Parlour's 'The Female Lens: 9 Contemporary Female Photographers' at the Photo London 2018 art fair. The body of work explores Churchkill's relationship to female intimacy through the use of multiple art forms, shadows, and color.`;
@@ -162,8 +163,35 @@ export const artworks: Artwork[] = [
 
 export const archives: Artwork[] = [
   {
-    id: 'the-white-frame',
+    id: 'dolce-far-niente',
     number: '01',
+    title: 'Dolce Far Niente',
+    image: '/images/archives/dolce-far-niente/cover.jpeg',
+    layout: 'alternate',
+    date: 'March 2020',
+    description: `<p><em>"We call it Dolce Far Niente. It means the sweetness of doing nothing. We are masters of it." - Eat Pray Love (2010)</em></p><p>The following series is a collection of analog photographs that I captured when I was on my own, surrounded by almost nobody, doing almost nothing. They are the things that I observed and found appealing. Things which might have gone unnoticed otherwise. Shot using Kodak KB10 and Fujifilm C200.</p>`,
+    category: 'archives',
+    galleryImages: [
+      '/images/archives/dolce-far-niente/dolce-far-niente-01.jpeg',
+      '/images/archives/dolce-far-niente/dolce-far-niente-02.jpeg',
+      '/images/archives/dolce-far-niente/dolce-far-niente-03.jpeg',
+      '/images/archives/dolce-far-niente/dolce-far-niente-05.jpeg',
+      '/images/archives/dolce-far-niente/dolce-far-niente-04.jpeg',
+      '/images/archives/dolce-far-niente/dolce-far-niente-06.jpeg',
+      '/images/archives/dolce-far-niente/dolce-far-niente-07.jpeg',
+      '/images/archives/dolce-far-niente/dolce-far-niente-08.jpeg',
+      '/images/archives/dolce-far-niente/dolce-far-niente-09.jpeg',
+      '/images/archives/dolce-far-niente/dolce-far-niente-10.jpeg',
+      '/images/archives/dolce-far-niente/dolce-far-niente-11.jpeg',
+      '/images/archives/dolce-far-niente/dolce-far-niente-12.jpeg',
+      '/images/archives/dolce-far-niente/dolce-far-niente-14.jpeg',
+      '/images/archives/dolce-far-niente/dolce-far-niente-13.jpeg',
+      '/images/archives/dolce-far-niente/dolce-far-niente-15.jpeg',
+    ],
+  },
+  {
+    id: 'the-white-frame',
+    number: '02',
     title: 'The White Frame',
     image: '/images/archives/the-white-frame/rose.jpeg',
     layout: 'wheel',
@@ -183,7 +211,7 @@ export const archives: Artwork[] = [
   },
   {
     id: 'the-faces-of-katraj',
-    number: '02',
+    number: '03',
     title: 'The Faces of Katraj',
     image: '/images/archives/faces-of-katraj/small-trader-01.jpeg',
     layout: 'wheel',
@@ -204,7 +232,7 @@ export const archives: Artwork[] = [
   },
   {
     id: 'tints',
-    number: '03',
+    number: '04',
     title: 'Tints',
     image: '/images/archives/tints/turmeric.jpeg',
     layout: 'carousel',
@@ -221,7 +249,7 @@ export const archives: Artwork[] = [
   },
   {
     id: 'textures-in-circles',
-    number: '04',
+    number: '05',
     title: 'Texture in Circles',
     image: '/images/archives/textures-in-circles/cloth-2.jpg',
     layout: 'equigrid',
@@ -245,7 +273,7 @@ export const archives: Artwork[] = [
   },
   {
     id: 'nostalgia',
-    number: '05',
+    number: '06',
     title: 'Nostalgia',
     image: '/images/archives/nostalgia/transistor.jpg',
     layout: 'carousel',
@@ -270,7 +298,9 @@ export function getArtworkById(id: string): Artwork | undefined {
 }
 
 export function getRelatedArtworks(currentId: string, count = 2): Artwork[] {
-  const all = getAllArtworks().filter((a) => a.id !== currentId);
-  const shuffled = all.sort(() => 0.5 - Math.random());
+  const current = getArtworkById(currentId);
+  const pool = current?.category === 'archives' ? archives : artworks;
+  const candidates = pool.filter((a) => a.id !== currentId);
+  const shuffled = candidates.sort(() => 0.5 - Math.random());
   return shuffled.slice(0, count);
 }

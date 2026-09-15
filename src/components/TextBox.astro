@@ -18,9 +18,7 @@ const { title, date, body, bodyWidth = 1064, offsetX = 177 } = Astro.props;
       <p class="text-box-date">{date}</p>
     </div>
   </div>
-  <div class="text-box-body" style={`max-width: ${bodyWidth}px;`}>
-    <p>{body}</p>
-  </div>
+  <div class="text-box-body" style={`max-width: ${bodyWidth}px;`} set:html={body} />
 </div>
 
 <style>
@@ -70,5 +68,9 @@ const { title, date, body, bodyWidth = 1064, offsetX = 177 } = Astro.props;
     color: var(--color-grey);
     line-height: 1.6;
     text-align: left;
+  }
+
+  .text-box-body p + p {
+    margin-top: 20px;
   }
 </style>

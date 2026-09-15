@@ -4,9 +4,10 @@ interface Props {
   title: string;
   image: string;
   href: string;
+  imageFit?: 'cover' | 'contain';
 }
 
-const { number, title, image, href } = Astro.props;
+const { number, title, image, href, imageFit = 'cover' } = Astro.props;
 ---
 
 <a href={href} class="artwork-block">
@@ -15,7 +16,7 @@ const { number, title, image, href } = Astro.props;
     <div class="artwork-content">
       <span class="artwork-number">{number}</span>
       <div class="artwork-image-wrapper">
-        <img src={image} alt={title} loading="lazy" />
+        <img src={image} alt={title} loading="lazy" style={`object-fit: ${imageFit};`} />
       </div>
       <span class="artwork-title">{title}</span>
     </div>

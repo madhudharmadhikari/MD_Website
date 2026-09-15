@@ -77,6 +77,7 @@ const continueItems = related.map((r) => ({
         {galleryImages.map((src, i) => {
           const groupIndex = Math.floor(i / 3);
           const posInGroup = i % 3;
+          const imgFit = artwork.id === 'dolce-far-niente' ? 'contain' : 'cover';
 
           if (posInGroup < 2) {
             return (
@@ -87,13 +88,13 @@ const continueItems = related.map((r) => ({
                 role="button"
                 tabindex="0"
               >
-                <img src={src} alt="" loading="lazy" />
+                <img src={src} alt="" loading="lazy" style={`object-fit: ${imgFit};`} />
               </div>
             );
           }
           return (
             <div class="alternate-image alternate-image--center" data-lightbox-trigger data-lightbox-index={i} role="button" tabindex="0">
-              <img src={src} alt="" loading="lazy" />
+              <img src={src} alt="" loading="lazy" style={`object-fit: ${imgFit};`} />
             </div>
           );
         })}

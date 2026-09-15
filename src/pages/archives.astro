@@ -20,6 +20,7 @@ const col2Items = archives.filter((_, i) => i % 2 === 1);
             title={item.title}
             image={`${base}${item.image.replace(/^\//, '')}`}
             href={`${base}series/${item.id}`}
+            imageFit={item.imageFit}
           />
         </div>
       ))}
@@ -32,6 +33,7 @@ const col2Items = archives.filter((_, i) => i % 2 === 1);
             title={item.title}
             image={`${base}${item.image.replace(/^\//, '')}`}
             href={`${base}series/${item.id}`}
+            imageFit={item.imageFit}
           />
         </div>
       ))}
