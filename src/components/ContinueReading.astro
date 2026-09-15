@@ -4,6 +4,7 @@ interface Props {
     title: string;
     image: string;
     href: string;
+    objectPosition?: string;
   }[];
 }
 
@@ -16,7 +17,12 @@ const { items } = Astro.props;
     {items.map((item) => (
       <a href={item.href} class="continue-reading-item">
         <div class="continue-reading-image">
-          <img src={item.image} alt={item.title} loading="lazy" />
+          <img
+            src={item.image}
+            alt={item.title}
+            loading="lazy"
+            style={`object-position: ${item.objectPosition ?? 'center'};`}
+          />
         </div>
         <span class="continue-reading-label">{item.title}</span>
       </a>

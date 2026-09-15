@@ -22,10 +22,16 @@ const related = getRelatedArtworks(slug!, 2);
 
 const galleryImages = artwork.galleryImages.map(prefixPath);
 
+const continueReadingPositions: Record<string, string> = {
+  'the-white-frame': 'top',
+  nostalgia: 'bottom',
+};
+
 const continueItems = related.map((r) => ({
-  title: `Title of the series here`,
+  title: r.title,
   image: prefixPath(r.image),
   href: `${base}series/${r.id}`,
+  objectPosition: continueReadingPositions[r.id],
 }));
 ---
 
