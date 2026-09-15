@@ -162,8 +162,29 @@ export const artworks: Artwork[] = [
 
 export const archives: Artwork[] = [
   {
-    id: 'tints',
+    id: 'the-faces-of-katraj',
     number: '01',
+    title: 'The Faces of Katraj',
+    image: '/images/archives/faces-of-katraj/small-trader-01.jpeg',
+    layout: 'wheel',
+    date: 'September 2017',
+    description: `The following series was shot in the year 2016. Inspired by the "Small Traders" series by Irving Penn, this was an attempt to capture the faces of Katraj, an area in the city of Pune where I was studying photography. Traditionally he shot full length photos of the workers, but I wanted to add my touch to the entire project by moving closer to my subjects, giving the viewer a feeling of being closer to them. I wanted to focus more on the person than the objects they worked with.`,
+    category: 'archives',
+    galleryImages: [
+      '/images/archives/faces-of-katraj/small-trader-01.jpeg',
+      '/images/archives/faces-of-katraj/small-trader-02.jpeg',
+      '/images/archives/faces-of-katraj/small-trader-03.jpeg',
+      '/images/archives/faces-of-katraj/small-trader-04.jpeg',
+      '/images/archives/faces-of-katraj/small-trader-05.jpeg',
+      '/images/archives/faces-of-katraj/small-trader-06.jpeg',
+      '/images/archives/faces-of-katraj/small-trader-07.jpeg',
+      '/images/archives/faces-of-katraj/small-trader-08.jpeg',
+      '/images/archives/faces-of-katraj/small-trader-09.jpeg',
+    ],
+  },
+  {
+    id: 'tints',
+    number: '02',
     title: 'Tints',
     image: '/images/archives/tints/turmeric.jpeg',
     layout: 'carousel',
@@ -180,7 +201,7 @@ export const archives: Artwork[] = [
   },
   {
     id: 'textures-in-circles',
-    number: '02',
+    number: '03',
     title: 'Texture in Circles',
     image: '/images/archives/textures-in-circles/cloth-2.jpg',
     layout: 'equigrid',
@@ -204,7 +225,7 @@ export const archives: Artwork[] = [
   },
   {
     id: 'nostalgia',
-    number: '03',
+    number: '04',
     title: 'Nostalgia',
     image: '/images/archives/nostalgia/transistor.jpg',
     layout: 'carousel',
