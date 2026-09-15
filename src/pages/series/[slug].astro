@@ -33,7 +33,13 @@ const continueItems = related.map((r) => ({
   {artwork.layout === 'carousel' && (
     <section class="series-carousel">
       <div class="series-carousel-wrapper">
-        <ImageCarousel images={galleryImages} width={960} height={711} />
+        <ImageCarousel
+          images={galleryImages}
+          width={960}
+          height={711}
+          fit={artwork.id === 'nostalgia' ? 'contain' : 'cover'}
+          lightbox={false}
+        />
       </div>
       <div class="series-carousel-text">
         <TextBox title={artwork.title} date={artwork.date} body={artwork.description} />

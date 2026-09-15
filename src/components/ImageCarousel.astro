@@ -3,9 +3,11 @@ interface Props {
   images: string[];
   width?: number;
   height?: number;
+  fit?: 'cover' | 'contain';
+  lightbox?: boolean;
 }
 
-const { images, width = 1086, height = 804 } = Astro.props;
+const { images, width = 1086, height = 804, fit = 'cover', lightbox = true } = Astro.props;
 ---
 
 <div class="carousel" style={`width: ${width}px; height: ${height}px;`} data-carousel>
@@ -20,12 +22,12 @@ const { images, width = 1086, height = 804 } = Astro.props;
       <div
         class:list={['carousel-slide', { 'carousel-slide--active': i === 0 }]}
         data-slide={i}
-        data-lightbox-trigger
-        data-lightbox-index={i}
-        role="button"
-        tabindex="0"
+        data-lightbox-trigger={lightbox ? true : undefined}
+        data-lightbox-index={lightbox ? i : undefined}
+        role={lightbox ? 'button' : undefined}
+        tabindex={lightbox ? '0' : undefined}
       >
-        <img src={src} alt={`Slide ${i + 1}`} loading={i === 0 ? 'eager' : 'lazy'} />
+        <img src={src} alt={`Slide ${i + 1}`} loading={i === 0 ? 'eager' : 'lazy'} style={`object-fit: ${fit};`} />
       </div>
     ))}
   </div>
@@ -61,6 +63,9 @@ const { images, width = 1086, height = 804 } = Astro.props;
   .carousel-slide--active {
     opacity: 1;
     pointer-events: auto;
+  }
+
+  .carousel-slide[data-lightbox-trigger].carousel-slide--active {
     cursor: pointer;
   }
 
