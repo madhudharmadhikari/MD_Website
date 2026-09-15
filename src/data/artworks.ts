@@ -162,8 +162,28 @@ export const artworks: Artwork[] = [
 
 export const archives: Artwork[] = [
   {
-    id: 'the-faces-of-katraj',
+    id: 'the-white-frame',
     number: '01',
+    title: 'The White Frame',
+    image: '/images/archives/the-white-frame/rose.jpeg',
+    layout: 'wheel',
+    date: 'September 2017',
+    description: `There's a very specific term in photography called "pictorialism." It was a movement in the 19th and 20th century, where the photographers started creating rather than recording the images. It captured the beauty of the object rather than just the object. In simple words, the photographs looked like paintings. Beauty being the main focus of the images, I initiated this series with the most immediate object that comes to anyone's mind which is flowers and plant life. The following series has Xray images of floral plants that have been uprooted.`,
+    category: 'archives',
+    galleryImages: [
+      '/images/archives/the-white-frame/rose.jpeg',
+      '/images/archives/the-white-frame/cactus.jpeg',
+      '/images/archives/the-white-frame/hibiscus.jpeg',
+      '/images/archives/the-white-frame/marigold.jpeg',
+      '/images/archives/the-white-frame/star-flower.jpeg',
+      '/images/archives/the-white-frame/succulant.jpeg',
+      '/images/archives/the-white-frame/transvaal-daisy.jpeg',
+      '/images/archives/the-white-frame/velvet.jpeg',
+    ],
+  },
+  {
+    id: 'the-faces-of-katraj',
+    number: '02',
     title: 'The Faces of Katraj',
     image: '/images/archives/faces-of-katraj/small-trader-01.jpeg',
     layout: 'wheel',
@@ -184,7 +204,7 @@ export const archives: Artwork[] = [
   },
   {
     id: 'tints',
-    number: '02',
+    number: '03',
     title: 'Tints',
     image: '/images/archives/tints/turmeric.jpeg',
     layout: 'carousel',
@@ -201,7 +221,7 @@ export const archives: Artwork[] = [
   },
   {
     id: 'textures-in-circles',
-    number: '03',
+    number: '04',
     title: 'Texture in Circles',
     image: '/images/archives/textures-in-circles/cloth-2.jpg',
     layout: 'equigrid',
@@ -225,7 +245,7 @@ export const archives: Artwork[] = [
   },
   {
     id: 'nostalgia',
-    number: '04',
+    number: '05',
     title: 'Nostalgia',
     image: '/images/archives/nostalgia/transistor.jpg',
     layout: 'carousel',
