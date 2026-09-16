@@ -215,8 +215,8 @@ export const archives: Artwork[] = [
     title: 'The Faces of Katraj',
     image: '/images/archives/faces-of-katraj/small-trader-01.jpeg',
     layout: 'wheel',
-    date: 'September 2017',
-    description: `The following series was shot in the year 2016. Inspired by the "Small Traders" series by Irving Penn, this was an attempt to capture the faces of Katraj, an area in the city of Pune where I was studying photography. Traditionally he shot full length photos of the workers, but I wanted to add my touch to the entire project by moving closer to my subjects, giving the viewer a feeling of being closer to them. I wanted to focus more on the person than the objects they worked with.`,
+    date: 'May 2016',
+    description: `Inspired by the "Small Traders" series by Irving Penn, this was an attempt to capture the faces of Katraj, an area in the city of Pune where I was studying photography. Traditionally he shot full length photos of the workers, but I wanted to add my touch to the entire project by moving closer to my subjects, giving the viewer a feeling of being closer to them. I wanted to focus more on the person than the objects they worked with.`,
     category: 'archives',
     galleryImages: [
       '/images/archives/faces-of-katraj/small-trader-01.jpeg',
