@@ -17,7 +17,7 @@ export const artworks: Artwork[] = [
     id: 'pressed-flowers',
     number: '01',
     title: 'Pressed flowers',
-    image: '/images/artworks/pressed-flowers/pressed-flowers-01.jpg',
+    image: '/images/artworks/pressed-flowers/pressed-flowers-02.jpg',
     layout: 'alternate',
     date: 'June 2024',
     description: '',
