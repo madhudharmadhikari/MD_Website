@@ -14,8 +14,30 @@ export interface Artwork {
 
 export const artworks: Artwork[] = [
   {
-    id: 'a-perfect-intersection',
+    id: 'pressed-flowers',
     number: '01',
+    title: 'Pressed flowers',
+    image: '/images/artworks/pressed-flowers/pressed-flowers-01.jpg',
+    layout: 'alternate',
+    date: 'June 2024',
+    description: '',
+    category: 'artworks',
+    galleryImages: [
+      '/images/artworks/pressed-flowers/pressed-flowers-01.jpg',
+      '/images/artworks/pressed-flowers/pressed-flowers-02.jpg',
+      '/images/artworks/pressed-flowers/pressed-flowers-03.jpg',
+      '/images/artworks/pressed-flowers/pressed-flowers-04.jpg',
+      '/images/artworks/pressed-flowers/pressed-flowers-05.jpg',
+      '/images/artworks/pressed-flowers/pressed-flowers-06.jpg',
+      '/images/artworks/pressed-flowers/pressed-flowers-07.jpg',
+      '/images/artworks/pressed-flowers/pressed-flowers-08.jpg',
+      '/images/artworks/pressed-flowers/pressed-flowers-09.jpg',
+      '/images/artworks/pressed-flowers/pressed-flowers-10.jpg',
+    ],
+  },
+  {
+    id: 'a-perfect-intersection',
+    number: '02',
     title: 'A Perfect Intersection',
     image: '/images/artworks/a-perfect-intersection/perfect-intersection-05.jpg',
     layout: 'carousel',
@@ -36,7 +58,7 @@ export const artworks: Artwork[] = [
   },
   {
     id: 'noon',
-    number: '02',
+    number: '03',
     title: 'Noon',
     image: '/images/artworks/noon/noon-10.jpg',
     layout: 'carousel',
@@ -59,7 +81,7 @@ export const artworks: Artwork[] = [
   },
   {
     id: 'first-reflections',
-    number: '03',
+    number: '04',
     title: 'First Reflections',
     image: '/images/artworks/first-reflections/first-reflections-01.jpeg',
     layout: 'alternate',
@@ -80,7 +102,7 @@ export const artworks: Artwork[] = [
   },
   {
     id: 'flaw-ruh',
-    number: '04',
+    number: '05',
     title: 'Flaw • ruh',
     image: '/images/artworks/flaw-ruh/flaw-ruh-07.jpeg',
     layout: 'equigrid',

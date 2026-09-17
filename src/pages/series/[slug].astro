@@ -23,7 +23,7 @@ const related = getRelatedArtworks(slug!, 2);
 const galleryImages = artwork.galleryImages.map(prefixPath);
 
 // Series whose images should never be cropped (object-fit: contain instead of cover).
-const uncroppedSeries = new Set(['nostalgia', 'dolce-far-niente', 'flaw-ruh', 'noon', 'a-perfect-intersection']);
+const uncroppedSeries = new Set(['nostalgia', 'dolce-far-niente', 'flaw-ruh', 'noon', 'a-perfect-intersection', 'pressed-flowers']);
 const imgFit = uncroppedSeries.has(artwork.id) ? 'contain' : 'cover';
 const imgPosition = artwork.id === 'first-reflections' ? 'center bottom' : 'center';
 
@@ -87,7 +87,8 @@ const continueItems = related.map((r) => ({
       <div class="series-alternate-grid">
         {galleryImages.map((src, i) => {
           const groupIndex = Math.floor(i / 3);
-          const posInGroup = i % 3;
+          const isLoneTrailingImage = artwork.id === 'pressed-flowers' && i === galleryImages.length - 1;
+          const posInGroup = isLoneTrailingImage ? 2 : i % 3;
 
           if (posInGroup < 2) {
             return (
@@ -103,7 +104,14 @@ const continueItems = related.map((r) => ({
             );
           }
           return (
-            <div class="alternate-image alternate-image--center" data-lightbox-trigger data-lightbox-index={i} role="button" tabindex="0">
+            <div
+              class="alternate-image alternate-image--center"
+              data-lightbox-trigger
+              data-lightbox-index={i}
+              role="button"
+              tabindex="0"
+              style={isLoneTrailingImage ? 'margin-top: -100px;' : undefined}
+            >
               <img src={src} alt="" loading="lazy" style={`object-fit: ${imgFit}; object-position: ${imgPosition};`} />
             </div>
           );
