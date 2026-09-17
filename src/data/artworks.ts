@@ -14,8 +14,29 @@ export interface Artwork {
 
 export const artworks: Artwork[] = [
   {
-    id: 'flaw-ruh',
+    id: 'first-reflections',
     number: '01',
+    title: 'First Reflections',
+    image: '/images/artworks/first-reflections/first-reflections-01.jpeg',
+    layout: 'alternate',
+    date: 'February 2020',
+    description: '',
+    category: 'artworks',
+    galleryImages: [
+      '/images/artworks/first-reflections/first-reflections-01.jpeg',
+      '/images/artworks/first-reflections/first-reflections-02.jpeg',
+      '/images/artworks/first-reflections/first-reflections-03.jpeg',
+      '/images/artworks/first-reflections/first-reflections-04.jpeg',
+      '/images/artworks/first-reflections/first-reflections-05.jpeg',
+      '/images/artworks/first-reflections/first-reflections-06.jpeg',
+      '/images/artworks/first-reflections/first-reflections-07.jpeg',
+      '/images/artworks/first-reflections/first-reflections-08.jpeg',
+      '/images/artworks/first-reflections/first-reflections-09.jpeg',
+    ],
+  },
+  {
+    id: 'flaw-ruh',
+    number: '02',
     title: 'Flaw • ruh',
     image: '/images/artworks/flaw-ruh/flaw-ruh-07.jpeg',
     layout: 'equigrid',

@@ -22,6 +22,11 @@ const related = getRelatedArtworks(slug!, 2);
 
 const galleryImages = artwork.galleryImages.map(prefixPath);
 
+// Series whose images should never be cropped (object-fit: contain instead of cover).
+const uncroppedSeries = new Set(['nostalgia', 'dolce-far-niente', 'flaw-ruh']);
+const imgFit = uncroppedSeries.has(artwork.id) ? 'contain' : 'cover';
+const imgPosition = artwork.id === 'first-reflections' ? 'center bottom' : 'center';
+
 const continueReadingPositions: Record<string, string> = {
   'the-white-frame': 'top',
   nostalgia: 'bottom',
@@ -43,7 +48,7 @@ const continueItems = related.map((r) => ({
           images={galleryImages}
           width={960}
           height={711}
-          fit={artwork.id === 'nostalgia' ? 'contain' : 'cover'}
+          fit={imgFit}
           lightbox={false}
         />
       </div>
@@ -61,7 +66,7 @@ const continueItems = related.map((r) => ({
       <div class="series-equigrid-grid">
         {galleryImages.map((src, i) => (
           <div class="equigrid-image" data-lightbox-trigger data-lightbox-index={i} role="button" tabindex="0">
-            <img src={src} alt="" loading="lazy" style={`object-fit: ${artwork.id === 'flaw-ruh' ? 'contain' : 'cover'};`} />
+            <img src={src} alt="" loading="lazy" style={`object-fit: ${imgFit};`} />
           </div>
         ))}
       </div>
@@ -83,7 +88,6 @@ const continueItems = related.map((r) => ({
         {galleryImages.map((src, i) => {
           const groupIndex = Math.floor(i / 3);
           const posInGroup = i % 3;
-          const imgFit = artwork.id === 'dolce-far-niente' ? 'contain' : 'cover';
 
           if (posInGroup < 2) {
             return (
@@ -94,13 +98,13 @@ const continueItems = related.map((r) => ({
                 role="button"
                 tabindex="0"
               >
-                <img src={src} alt="" loading="lazy" style={`object-fit: ${imgFit};`} />
+                <img src={src} alt="" loading="lazy" style={`object-fit: ${imgFit}; object-position: ${imgPosition};`} />
               </div>
             );
           }
           return (
             <div class="alternate-image alternate-image--center" data-lightbox-trigger data-lightbox-index={i} role="button" tabindex="0">
-              <img src={src} alt="" loading="lazy" style={`object-fit: ${imgFit};`} />
+              <img src={src} alt="" loading="lazy" style={`object-fit: ${imgFit}; object-position: ${imgPosition};`} />
             </div>
           );
         })}
