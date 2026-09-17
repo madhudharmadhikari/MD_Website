@@ -24,8 +24,8 @@ export const artworks: Artwork[] = [
     category: 'artworks',
     galleryImages: [
       '/images/artworks/pressed-flowers/pressed-flowers-01.jpg',
-      '/images/artworks/pressed-flowers/pressed-flowers-02.jpg',
       '/images/artworks/pressed-flowers/pressed-flowers-03.jpg',
+      '/images/artworks/pressed-flowers/pressed-flowers-02.jpg',
       '/images/artworks/pressed-flowers/pressed-flowers-04.jpg',
       '/images/artworks/pressed-flowers/pressed-flowers-05.jpg',
       '/images/artworks/pressed-flowers/pressed-flowers-06.jpg',
