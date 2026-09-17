@@ -23,7 +23,7 @@ const related = getRelatedArtworks(slug!, 2);
 const galleryImages = artwork.galleryImages.map(prefixPath);
 
 // Series whose images should never be cropped (object-fit: contain instead of cover).
-const uncroppedSeries = new Set(['nostalgia', 'dolce-far-niente', 'flaw-ruh']);
+const uncroppedSeries = new Set(['nostalgia', 'dolce-far-niente', 'flaw-ruh', 'noon', 'a-perfect-intersection']);
 const imgFit = uncroppedSeries.has(artwork.id) ? 'contain' : 'cover';
 const imgPosition = artwork.id === 'first-reflections' ? 'center bottom' : 'center';
 
