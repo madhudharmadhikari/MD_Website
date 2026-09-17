@@ -61,7 +61,7 @@ const continueItems = related.map((r) => ({
       <div class="series-equigrid-grid">
         {galleryImages.map((src, i) => (
           <div class="equigrid-image" data-lightbox-trigger data-lightbox-index={i} role="button" tabindex="0">
-            <img src={src} alt="" loading="lazy" />
+            <img src={src} alt="" loading="lazy" style={`object-fit: ${artwork.id === 'flaw-ruh' ? 'contain' : 'cover'};`} />
           </div>
         ))}
       </div>
