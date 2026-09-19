@@ -22,8 +22,9 @@ import { base } from '../lib/paths';
         data-contact-copy-email
         data-email="hello@madhuradharmadhikari.com"
       >hello@madhuradharmadhikari.com</button>
-      <span class="contact-popup-copied" data-contact-copied hidden>Copied to clipboard</span>
     </div>
+
+    <span class="contact-popup-copied" data-contact-copied hidden>Copied to clipboard</span>
   </div>
 </div>
 
@@ -121,12 +122,15 @@ import { base } from '../lib/paths';
   }
 
   .contact-popup-copied {
+    position: absolute;
+    bottom: 4%;
+    right: 4%;
+    z-index: 1;
     display: block;
-    margin-top: 8px;
     font-family: var(--font-body);
+    font-style: italic;
     font-size: clamp(11px, 1.6vw, 15px);
-    color: var(--color-white);
-    opacity: 0.85;
+    color: #7A7A7A;
   }
 
   .contact-popup-copied[hidden] {
