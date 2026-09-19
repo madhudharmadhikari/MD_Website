@@ -84,14 +84,14 @@ import { base } from '../lib/paths';
 
   .about-image-block {
     position: relative;
-    margin-top: 21px;
+    display: flow-root;
   }
 
   .about-line {
     position: absolute;
     left: -21px;
     top: 0;
-    bottom: -63px;
+    bottom: -45px;
     width: 2px;
     background-color: var(--color-line);
     border-radius: 1px;
@@ -100,13 +100,21 @@ import { base } from '../lib/paths';
   .about-image-wrapper {
     width: 100%;
     aspect-ratio: 687 / 1037;
+    margin-top: 21px;
     overflow: hidden;
   }
 
   @media (max-width: 600px) {
+    /* Line + image treated as one combined box: the line runs flush with
+       the image's edges instead of poking past its top/bottom corners. */
+    .about-image-wrapper {
+      margin-top: 0;
+    }
+
     .about-line {
       left: -12px;
-      bottom: -32px;
+      top: 0;
+      bottom: 0;
     }
   }
 
@@ -129,6 +137,12 @@ import { base } from '../lib/paths';
 
   .about-text p {
     margin-bottom: 20px;
+  }
+
+  @media (max-width: 900px) {
+    .about-text {
+      font-size: 18px;
+    }
   }
 
   .about-text p:last-child {
