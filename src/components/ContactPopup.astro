@@ -3,24 +3,28 @@ import { base } from '../lib/paths';
 ---
 
 <div class="contact-popup" data-contact-popup hidden>
-  <div class="contact-popup-bg">
-    <img src={`${base}images/contact-bg.jpg`} alt="" class="contact-popup-image" />
+  <div class="contact-popup-card">
+    <div class="contact-popup-bg">
+      <img src={`${base}images/contact-bg.jpg`} alt="" class="contact-popup-image" />
+    </div>
+
+    <button type="button" class="contact-popup-close" data-contact-popup-close aria-label="Close">
+      <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 6 6 18M6 6l12 12" />
+      </svg>
+    </button>
+
+    <div class="contact-popup-text">
+      <p class="contact-popup-intro">For commissions, commercial work, or just to say hi - reach me at</p>
+      <button
+        type="button"
+        class="contact-popup-email"
+        data-contact-copy-email
+        data-email="hello@madhuradharmadhikari.com"
+      >hello@madhuradharmadhikari.com</button>
+      <span class="contact-popup-copied" data-contact-copied hidden>Copied to clipboard</span>
+    </div>
   </div>
-
-  <button type="button" class="contact-popup-close" data-contact-popup-close aria-label="Close">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-      <path d="M18 6 6 18M6 6l12 12" />
-    </svg>
-  </button>
-
-  <p class="contact-popup-intro">For commissions, commercial work, or just to say hi - reach me at</p>
-  <button
-    type="button"
-    class="contact-popup-email"
-    data-contact-copy-email
-    data-email="hello@madhuradharmadhikari.com"
-  >hello@madhuradharmadhikari.com</button>
-  <span class="contact-popup-copied" data-contact-copied hidden>Copied to clipboard</span>
 </div>
 
 <style>
@@ -28,10 +32,23 @@ import { base } from '../lib/paths';
     position: fixed;
     inset: 0;
     z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    background-color: rgba(20, 20, 20, 0.6);
   }
 
   .contact-popup[hidden] {
     display: none;
+  }
+
+  .contact-popup-card {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    aspect-ratio: 8490 / 6018;
+    overflow: hidden;
   }
 
   .contact-popup-bg {
@@ -48,14 +65,14 @@ import { base } from '../lib/paths';
 
   .contact-popup-close {
     position: absolute;
-    top: 32px;
-    right: 40px;
+    top: 4%;
+    right: 4%;
     z-index: 2;
     background: none;
     border: none;
     color: var(--color-white);
     cursor: pointer;
-    padding: 8px;
+    padding: 4px;
     opacity: 0.85;
     transition: opacity 0.2s ease;
   }
@@ -64,32 +81,37 @@ import { base } from '../lib/paths';
     opacity: 1;
   }
 
-  .contact-popup-intro {
+  .contact-popup-text {
     position: absolute;
-    top: 230px;
-    left: var(--page-margin);
-    right: var(--page-margin);
+    top: 68%;
+    left: 6%;
+    right: 6%;
     z-index: 1;
+  }
+
+  @media (max-width: 700px) {
+    .contact-popup-text {
+      top: 52%;
+    }
+  }
+
+  .contact-popup-intro {
     font-family: var(--font-body);
     font-style: italic;
-    font-size: 26px;
+    font-size: clamp(11px, 2vw, 18px);
     font-weight: 400;
     color: var(--color-white);
   }
 
   .contact-popup-email {
-    position: absolute;
-    top: 630px;
-    left: var(--page-margin);
-    right: var(--page-margin);
-    z-index: 1;
     display: block;
+    margin-top: 0.6em;
     background: none;
     border: none;
     padding: 0;
     text-align: left;
     font-family: var(--font-display);
-    font-size: 58px;
+    font-size: clamp(20px, 5.4vw, 48px);
     font-weight: 400;
     color: #B00000;
     cursor: pointer;
@@ -99,36 +121,16 @@ import { base } from '../lib/paths';
   }
 
   .contact-popup-copied {
-    position: absolute;
-    top: calc(630px + 90px);
-    left: var(--page-margin);
-    z-index: 1;
+    display: block;
+    margin-top: 8px;
     font-family: var(--font-body);
-    font-size: 16px;
+    font-size: clamp(11px, 1.6vw, 15px);
     color: var(--color-white);
     opacity: 0.85;
   }
 
-  @media (max-width: 900px) {
-    .contact-popup-intro {
-      top: 140px;
-      font-size: 20px;
-    }
-
-    .contact-popup-email {
-      top: 380px;
-      font-size: 28px;
-      line-height: 1.3;
-    }
-
-    .contact-popup-copied {
-      top: calc(380px + 60px);
-    }
-
-    .contact-popup-close {
-      top: 20px;
-      right: 20px;
-    }
+  .contact-popup-copied[hidden] {
+    display: none;
   }
 </style>
 
@@ -137,6 +139,7 @@ import { base } from '../lib/paths';
     const root = document.querySelector<HTMLElement>('[data-contact-popup]');
     if (!root) return;
 
+    const card = root.querySelector<HTMLElement>('.contact-popup-card');
     const closeBtn = root.querySelector<HTMLButtonElement>('[data-contact-popup-close]');
     const copyBtn = root.querySelector<HTMLButtonElement>('[data-contact-copy-email]');
     const copiedNote = root.querySelector<HTMLElement>('[data-contact-copied]');
@@ -153,6 +156,10 @@ import { base } from '../lib/paths';
     }
 
     closeBtn?.addEventListener('click', close);
+
+    root.addEventListener('click', (e) => {
+      if (card && !card.contains(e.target as Node)) close();
+    });
 
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && !root!.hidden) close();
