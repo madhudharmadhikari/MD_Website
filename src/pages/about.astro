@@ -1,9 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Lightbox from '../components/Lightbox.astro';
 import { base } from '../lib/paths';
-
-const aboutImage = `${base}images/placeholder/placeholder-2.jpg`;
 ---
 
 <BaseLayout title="About — Madhura Dharmadhikari" currentPage="about">
@@ -11,15 +8,9 @@ const aboutImage = `${base}images/placeholder/placeholder-2.jpg`;
     <div class="about-column">
       <div class="about-image-block">
         <div class="about-line"></div>
-        <div
-          class="about-image-wrapper"
-          data-lightbox-trigger
-          data-lightbox-index="0"
-          role="button"
-          tabindex="0"
-        >
+        <div class="about-image-wrapper">
           <img
-            src={aboutImage}
+            src={`${base}images/placeholder/placeholder-2.jpg`}
             alt="Madhura Dharmadhikari"
             class="about-image"
           />
@@ -62,8 +53,6 @@ const aboutImage = `${base}images/placeholder/placeholder-2.jpg`;
       </div>
     </div>
   </section>
-
-  <Lightbox images={[aboutImage]} />
 </BaseLayout>
 
 <style>
@@ -117,7 +106,6 @@ const aboutImage = `${base}images/placeholder/placeholder-2.jpg`;
     aspect-ratio: 687 / 1037;
     margin-top: 21px;
     overflow: hidden;
-    cursor: pointer;
   }
 
   @media (max-width: 900px) {

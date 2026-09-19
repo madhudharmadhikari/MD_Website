@@ -45,24 +45,6 @@ import { base } from '../lib/paths';
     gap: 40px;
   }
 
-  @media (max-width: 600px) {
-    .site-header {
-      padding-top: 48px;
-    }
-
-    .site-title {
-      font-size: 34px;
-    }
-
-    .site-nav {
-      gap: 24px;
-    }
-
-    .site-nav a {
-      font-size: 16px;
-    }
-  }
-
   .site-header--about .site-nav {
     justify-content: flex-end;
   }
@@ -82,5 +64,23 @@ import { base } from '../lib/paths';
   .site-nav a.active {
     font-weight: 800;
     color: var(--color-turkey-red);
+  }
+
+  @media (max-width: 600px) {
+    .site-header {
+      padding-top: 48px;
+    }
+
+    .site-title {
+      font-size: 34px;
+    }
+
+    .site-nav {
+      gap: 24px;
+    }
+
+    .site-nav a {
+      font-size: 16px;
+    }
   }
 </style>

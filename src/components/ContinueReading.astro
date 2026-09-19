@@ -76,6 +76,16 @@ const { items } = Astro.props;
     transform: scale(1.05);
   }
 
+  .continue-reading-label {
+    display: block;
+    margin-top: 21px;
+    font-family: var(--font-body);
+    font-size: 20px;
+    font-weight: 400;
+    font-style: italic;
+    color: var(--color-eerie-black);
+  }
+
   @media (max-width: 700px) {
     .continue-reading-grid {
       gap: 16px;
@@ -88,21 +98,11 @@ const { items } = Astro.props;
     }
 
     .continue-reading-label {
-      font-size: 15px;
+      font-size: 7.5px;
     }
 
     .continue-reading-title {
       font-size: 26px;
     }
-  }
-
-  .continue-reading-label {
-    display: block;
-    margin-top: 21px;
-    font-family: var(--font-body);
-    font-size: 20px;
-    font-weight: 400;
-    font-style: italic;
-    color: var(--color-eerie-black);
   }
 </style>
