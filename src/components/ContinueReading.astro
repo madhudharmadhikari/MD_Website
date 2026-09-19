@@ -32,7 +32,7 @@ const { items } = Astro.props;
 
 <style>
   .continue-reading {
-    padding: 0 177px;
+    padding: 0 var(--page-margin);
     margin-top: 100px;
   }
 
@@ -46,6 +46,8 @@ const { items } = Astro.props;
   .continue-reading-grid {
     margin-top: 50px;
     display: flex;
+    flex-wrap: wrap;
+    gap: 50px;
     justify-content: space-between;
   }
 
@@ -53,11 +55,13 @@ const { items } = Astro.props;
     display: block;
     text-decoration: none;
     color: inherit;
+    flex: 1 1 450px;
+    max-width: 450px;
   }
 
   .continue-reading-image {
-    width: 450px;
-    height: 368px;
+    width: 100%;
+    aspect-ratio: 450 / 368;
     overflow: hidden;
   }
 
@@ -70,6 +74,22 @@ const { items } = Astro.props;
 
   .continue-reading-item:hover .continue-reading-image img {
     transform: scale(1.05);
+  }
+
+  @media (max-width: 700px) {
+    .continue-reading-grid {
+      gap: 16px;
+    }
+
+    .continue-reading-item {
+      flex: 1 1 0;
+      min-width: 0;
+      max-width: none;
+    }
+
+    .continue-reading-label {
+      font-size: 15px;
+    }
   }
 
   .continue-reading-label {

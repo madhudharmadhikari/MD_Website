@@ -90,11 +90,19 @@ import { base } from '../lib/paths';
     color: #ffffff;
     text-shadow: 0 1px 14px rgba(0, 0, 0, 0.35);
     text-decoration: none;
+    text-align: center;
     transition: opacity 0.3s ease;
     user-select: none;
   }
 
   .landing-title:hover {
     opacity: 0.8;
+  }
+
+  @media (max-width: 480px) {
+    .landing-title {
+      font-size: 36px;
+      padding: 0 24px;
+    }
   }
 </style>

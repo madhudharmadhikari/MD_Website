@@ -105,12 +105,11 @@ const continueItems = related.map((r) => ({
           }
           return (
             <div
-              class="alternate-image alternate-image--center"
+              class:list={['alternate-image', 'alternate-image--center', { 'alternate-image--trailing': isLoneTrailingImage }]}
               data-lightbox-trigger
               data-lightbox-index={i}
               role="button"
               tabindex="0"
-              style={isLoneTrailingImage ? 'margin-top: -100px;' : undefined}
             >
               <img src={src} alt="" loading="lazy" style={`object-fit: ${imgFit}; object-position: ${imgPosition};`} />
             </div>
@@ -153,7 +152,7 @@ const continueItems = related.map((r) => ({
   }
 
   .series-carousel-wrapper {
-    padding: 0 177px;
+    padding: 0 var(--page-margin);
   }
 
   .series-carousel-text {
@@ -170,7 +169,7 @@ const continueItems = related.map((r) => ({
   }
 
   .series-equigrid-grid {
-    padding: 0 177px;
+    padding: 0 var(--page-margin);
     display: grid;
     grid-template-columns: 530px 530px;
     gap: 25px;
@@ -179,7 +178,7 @@ const continueItems = related.map((r) => ({
 
   .equigrid-image {
     width: 530px;
-    height: 647px;
+    aspect-ratio: 530 / 647;
     overflow: hidden;
   }
 
@@ -199,7 +198,7 @@ const continueItems = related.map((r) => ({
   }
 
   .series-alternate-grid {
-    padding: 0 177px;
+    padding: 0 var(--page-margin);
     display: flex;
     flex-wrap: wrap;
     gap: 150px 50px;
@@ -214,22 +213,26 @@ const continueItems = related.map((r) => ({
 
   .alternate-image--left {
     width: 518px;
-    height: 633px;
+    aspect-ratio: 518 / 633;
     overflow: hidden;
   }
 
   .alternate-image--right {
     width: 518px;
-    height: 518px;
+    aspect-ratio: 518 / 518;
     overflow: hidden;
     align-self: center;
   }
 
   .alternate-image--center {
     width: 652px;
-    height: 753px;
+    aspect-ratio: 652 / 753;
     overflow: hidden;
     margin: 0 auto;
+  }
+
+  .alternate-image--trailing {
+    margin-top: -100px;
   }
 
   /* ===================== WHEEL LAYOUT ===================== */
@@ -238,7 +241,7 @@ const continueItems = related.map((r) => ({
   }
 
   .series-wheel-inner {
-    padding: 0 177px;
+    padding: 0 var(--page-margin);
     display: flex;
     gap: 50px;
     align-items: flex-start;
@@ -278,5 +281,59 @@ const continueItems = related.map((r) => ({
   /* ===================== LIGHTBOX TRIGGERS ===================== */
   [data-lightbox-trigger] {
     cursor: pointer;
+  }
+
+  /* ===================== MOBILE ===================== */
+  @media (max-width: 900px) {
+    .series-equigrid-grid {
+      grid-template-columns: 1fr;
+      max-width: 530px;
+      margin: 0 auto;
+      gap: 40px;
+    }
+
+    .equigrid-image {
+      width: 100%;
+    }
+
+    .series-alternate-grid {
+      gap: 40px;
+    }
+
+    .alternate-image--left,
+    .alternate-image--right,
+    .alternate-image--center {
+      width: 100%;
+      max-width: 518px;
+      margin: 0 auto;
+      align-self: center;
+    }
+
+    .alternate-image--center {
+      max-width: 652px;
+    }
+
+    .alternate-image--trailing {
+      margin-top: 0;
+    }
+
+    .series-wheel-inner {
+      flex-direction: column;
+    }
+
+    .series-wheel-text {
+      position: static;
+      flex-basis: auto;
+      width: 100%;
+    }
+
+    .series-wheel-images {
+      flex-basis: auto;
+      width: 100%;
+    }
+
+    .wheel-image {
+      width: 100%;
+    }
   }
 </style>

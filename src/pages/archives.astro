@@ -11,7 +11,7 @@ const col2Items = archives.filter((_, i) => i % 2 === 1);
 ---
 
 <BaseLayout title="Archives — Madhura Dharmadhikari" currentPage="archives">
-  <section class="archives-grid">
+  <section class="archives-grid archives-grid--desktop">
     <div class="archives-col archives-col--1">
       {col1Items.map((item) => (
         <div class="archives-item">
@@ -39,13 +39,27 @@ const col2Items = archives.filter((_, i) => i % 2 === 1);
       ))}
     </div>
   </section>
+
+  <section class="archives-grid archives-grid--mobile">
+    {archives.map((item) => (
+      <div class="archives-item">
+        <ArtworkBlock
+          number={item.number}
+          title={item.title}
+          image={`${base}${item.image.replace(/^\//, '')}`}
+          href={`${base}series/${item.id}`}
+          imageFit={item.imageFit}
+        />
+      </div>
+    ))}
+  </section>
 </BaseLayout>
 
 <style>
-  .archives-grid {
+  .archives-grid--desktop {
     display: flex;
     gap: 264px;
-    padding: 0 177px;
+    padding: 0 var(--page-margin);
     margin-top: 100px;
     justify-content: center;
   }
@@ -62,5 +76,24 @@ const col2Items = archives.filter((_, i) => i % 2 === 1);
 
   .archives-col--2 {
     padding-top: 259px;
+  }
+
+  .archives-grid--mobile {
+    display: none;
+  }
+
+  @media (max-width: 900px) {
+    .archives-grid--desktop {
+      display: none;
+    }
+
+    .archives-grid--mobile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 56px;
+      padding: 0 var(--page-margin);
+      margin-top: 100px;
+    }
   }
 </style>

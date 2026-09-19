@@ -6,14 +6,15 @@ import { base } from '../lib/paths';
 <BaseLayout title="About — Madhura Dharmadhikari" currentPage="about">
   <section class="about-content">
     <div class="about-column">
-      <div class="about-line"></div>
-
-      <div class="about-image-wrapper">
-        <img
-          src={`${base}images/placeholder/placeholder-2.jpg`}
-          alt="Madhura Dharmadhikari"
-          class="about-image"
-        />
+      <div class="about-image-block">
+        <div class="about-line"></div>
+        <div class="about-image-wrapper">
+          <img
+            src={`${base}images/placeholder/placeholder-2.jpg`}
+            alt="Madhura Dharmadhikari"
+            class="about-image"
+          />
+        </div>
       </div>
 
       <div class="about-text">
@@ -57,8 +58,20 @@ import { base } from '../lib/paths';
 <style>
   .about-content {
     position: relative;
-    padding: 0 177px;
+    padding: 0 var(--page-margin);
     margin-top: 100px;
+  }
+
+  @media (max-width: 900px) {
+    .about-content {
+      padding: 0 40px;
+    }
+  }
+
+  @media (max-width: 480px) {
+    .about-content {
+      padding: 0 32px;
+    }
   }
 
   .about-column {
@@ -69,21 +82,32 @@ import { base } from '../lib/paths';
     margin: 0 auto;
   }
 
+  .about-image-block {
+    position: relative;
+    margin-top: 21px;
+  }
+
   .about-line {
     position: absolute;
     left: -21px;
     top: 0;
+    bottom: -63px;
     width: 2px;
-    height: 1100px;
     background-color: var(--color-line);
     border-radius: 1px;
   }
 
   .about-image-wrapper {
-    margin-top: 21px;
     width: 100%;
-    height: 1037px;
+    aspect-ratio: 687 / 1037;
     overflow: hidden;
+  }
+
+  @media (max-width: 600px) {
+    .about-line {
+      left: -12px;
+      bottom: -32px;
+    }
   }
 
   .about-image {

@@ -94,4 +94,19 @@ const { number, title, image, href, imageFit = 'cover' } = Astro.props;
     font-style: italic;
     color: var(--color-eerie-black);
   }
+
+  @media (max-width: 480px) {
+    .artwork-image-wrapper {
+      width: 210px;
+      height: 317px;
+    }
+
+    .artwork-number {
+      font-size: 44px;
+    }
+
+    .artwork-title {
+      font-size: 19px;
+    }
+  }
 </style>

@@ -16,6 +16,23 @@
   --section-spacing: 100px;
 }
 
+@media (max-width: 900px) {
+  :root {
+    --page-margin: 32px;
+    --section-spacing: 64px;
+  }
+}
+
+@media (max-width: 480px) {
+  :root {
+    --page-margin: 24px;
+  }
+}
+
+html {
+  overflow-x: hidden;
+}
+
 *,
 *::before,
 *::after {

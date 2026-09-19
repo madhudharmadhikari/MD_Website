@@ -10,7 +10,7 @@ interface Props {
 const { title, date, body, bodyWidth = 1064, offsetX = 177 } = Astro.props;
 ---
 
-<div class="text-box" style={`padding-left: ${offsetX}px;`}>
+<div class="text-box" style={`--text-offset-x: ${offsetX}px;`}>
   <div class="text-box-header">
     <span class="text-box-line"></span>
     <div class="text-box-heading">
@@ -18,12 +18,13 @@ const { title, date, body, bodyWidth = 1064, offsetX = 177 } = Astro.props;
       <p class="text-box-date">{date}</p>
     </div>
   </div>
-  <div class="text-box-body" style={`max-width: ${bodyWidth}px;`} set:html={body} />
+  <div class="text-box-body" style={`--text-body-width: ${bodyWidth}px;`} set:html={body} />
 </div>
 
 <style>
   .text-box {
-    padding-right: 177px;
+    padding-left: var(--text-offset-x);
+    padding-right: var(--page-margin);
   }
 
   .text-box-header {
@@ -62,6 +63,7 @@ const { title, date, body, bodyWidth = 1064, offsetX = 177 } = Astro.props;
 
   .text-box-body {
     margin-top: 30px;
+    max-width: var(--text-body-width);
     font-family: var(--font-body);
     font-size: 20px;
     font-weight: 400;
@@ -72,5 +74,19 @@ const { title, date, body, bodyWidth = 1064, offsetX = 177 } = Astro.props;
 
   .text-box-body p + p {
     margin-top: 20px;
+  }
+
+  @media (max-width: 900px) {
+    .text-box {
+      padding-left: var(--page-margin);
+    }
+
+    .text-box-body {
+      max-width: 100%;
+    }
+
+    .text-box-title {
+      font-size: 28px;
+    }
   }
 </style>
